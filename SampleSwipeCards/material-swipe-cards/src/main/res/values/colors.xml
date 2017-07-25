@@ -2,4 +2,5 @@
 <resources>
     <color name="color_pager_indicator_unselected">#aaa</color>
     <color name="color_pager_indicator_selected">#cc222222</color>
+    <color name="color_default_foreground">#c0067b</color>
 </resources>

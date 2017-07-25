@@ -8,6 +8,7 @@
 
     <it.seaba83.material_swipe_cards.custom.CustomCardViewContainer
         android:layout_marginBottom="10dp"
+        app:mainColor="@android:color/holo_green_dark"
         android:id="@+id/cards_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

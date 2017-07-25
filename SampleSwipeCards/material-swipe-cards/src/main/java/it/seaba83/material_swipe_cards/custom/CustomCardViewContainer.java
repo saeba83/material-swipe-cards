@@ -2,6 +2,8 @@ package it.seaba83.material_swipe_cards.custom;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.drawable.GradientDrawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
@@ -24,7 +26,7 @@ public class CustomCardViewContainer extends LinearLayout {
     private ViewPager mPager;
 
     private int mItemsNumber;
-    private float mPagerHeight;
+    private int mMainColor;
 
     public CustomCardViewContainer(Context context) {
         super(context);
@@ -36,7 +38,7 @@ public class CustomCardViewContainer extends LinearLayout {
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.CustomCardViewContainer, 0, 0);
         try {
-            mPagerHeight = ta.getDimension(R.styleable.CustomCardViewContainer_pagerHeight, 100.0f);
+            mMainColor = ta.getColor(R.styleable.CustomCardViewContainer_mainColor, ContextCompat.getColor(getContext(), R.color.color_default_foreground));
         } finally {
             ta.recycle();
         }
@@ -49,7 +51,7 @@ public class CustomCardViewContainer extends LinearLayout {
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.CustomCardViewContainer, 0, 0);
         try {
-            mPagerHeight = ta.getDimension(R.styleable.CustomCardViewContainer_pagerHeight, 100.0f);
+            mMainColor = ta.getColor(R.styleable.CustomCardViewContainer_mainColor, ContextCompat.getColor(getContext(), R.color.color_default_foreground));
         } finally {
             ta.recycle();
         }
@@ -59,10 +61,9 @@ public class CustomCardViewContainer extends LinearLayout {
 
     private void init(){
         inflate(getContext(), R.layout.custom_cardview_container_layout, this);
-        setBackgroundColor(getResources().getColor(android.R.color.transparent));
+        setBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.transparent));
         mPager = (ViewPager) findViewById(R.id.pager);
         mIndicatorLayout = (LinearLayout) findViewById(R.id.indicator_layout);
-        //mPager.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, (int) mPagerHeight));
     }
 
     public void setAdapter(PagerAdapter adapter){
@@ -123,6 +124,7 @@ public class CustomCardViewContainer extends LinearLayout {
             if (selectedIndicator != null){
                 if (i== position){
                     selectedIndicator.setBackgroundResource(R.drawable.custom_pager_indicator_circle_selected);
+                    ((GradientDrawable) selectedIndicator.getBackground()).setColor(mMainColor);
                 }else{
                     selectedIndicator.setBackgroundResource(R.drawable.custom_pager_indicator_circle_unselected);
                 }
