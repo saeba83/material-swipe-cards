@@ -64,7 +64,7 @@ public class CustomCardView extends CardView {
         setCardElevation(getContext().getResources().getDimension(R.dimen.card_elevation_size));
 
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rootView = inflater.inflate(R.layout.custom_progress_cardview_layout, this, true);
+        View rootView = inflater.inflate(R.layout.custom_cardview_layout, this, true);
         mProgressView = (ProgressBar) rootView.findViewById(R.id.progressBar);
         mDataContainerLayout = (LinearLayout) rootView.findViewById(R.id.container);
 

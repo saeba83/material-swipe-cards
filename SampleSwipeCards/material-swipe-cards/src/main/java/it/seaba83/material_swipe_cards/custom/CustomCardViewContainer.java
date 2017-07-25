@@ -58,7 +58,7 @@ public class CustomCardViewContainer extends LinearLayout {
     }
 
     private void init(){
-        inflate(getContext(), R.layout.custom_pager_layout, this);
+        inflate(getContext(), R.layout.custom_cardview_container_layout, this);
         setBackgroundColor(getResources().getColor(android.R.color.transparent));
         mPager = (ViewPager) findViewById(R.id.pager);
         mIndicatorLayout = (LinearLayout) findViewById(R.id.indicator_layout);

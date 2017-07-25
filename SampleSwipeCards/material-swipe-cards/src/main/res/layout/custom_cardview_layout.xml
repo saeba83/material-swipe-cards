@@ -4,6 +4,7 @@
     android:minHeight="@dimen/card_minimum_height"
     android:layout_width="match_parent"
     android:gravity="center"
+    android:padding="@dimen/card_internal_padding"
     android:layout_height="match_parent">
 
     <ProgressBar
