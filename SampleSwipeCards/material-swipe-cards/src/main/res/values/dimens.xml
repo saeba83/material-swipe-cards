@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="card_elevation_size">3dp</dimen>
+    <dimen name="card_minimum_height">120dp</dimen>
+    <dimen name="pager_internal_padding">10dp</dimen>
+    <dimen name="indicator_margins_top">2dp</dimen>
+    <dimen name="indicator_margins_bottom">5dp</dimen>
+    <dimen name="indicator_margins_horizontal">4dp</dimen>
+    <dimen name="indicator_radius_size">9dp</dimen>
+</resources>

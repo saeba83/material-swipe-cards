@@ -1,0 +1,13 @@
+<resources>
+
+    <declare-styleable name="CustomCardView">
+        <attr name="progress" format="boolean"/>
+        <attr name="textColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="CustomCardViewContainer">
+        <attr name="pagerHeight" format="dimension"/>
+        <attr name="foreground" format="color"/>
+    </declare-styleable>
+
+</resources>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_pager_indicator_unselected">#aaa</color>
+    <color name="color_pager_indicator_selected">#cc222222</color>
+</resources>

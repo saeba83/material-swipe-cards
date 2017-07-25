@@ -1,0 +1,9 @@
+<resources>
+
+    <style name="CustomCardStyle" parent="CardView">
+        <item name="cardCornerRadius">4dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+    </style>
+
+</resources>
+

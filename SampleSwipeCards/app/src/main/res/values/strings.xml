@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SampleSwipeCards</string>
+    <string name="sample_card_one_title">This is my first card</string>
+    <string name="sample_card_two_title">This is my second card</string>
+    <string name="sample_card_three_title">This is my third card</string>
+
+    <string name="sample_card_one_message">Swipe me</string>
+    <string name="sample_card_two_message">once again</string>
+    <string name="sample_card_three_message">Now it can be enough!!</string>
+</resources>
