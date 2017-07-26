@@ -9,7 +9,6 @@ import it.seaba83.sampleswipecards.model.HelloWorldCard;
 
 public class MainActivity extends AppCompatActivity {
 
-    SwipeCardsAdapter mAdapter;
     CustomCardViewContainer mCardsContainer;
 
     @Override
@@ -18,12 +17,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mCardsContainer = (CustomCardViewContainer) findViewById(R.id.cards_container);
 
-        mAdapter = new SwipeCardsAdapter(this, mCardsContainer);
-
         HelloWorldCardCompiler cardCompiler = new HelloWorldCardCompiler(this);
-
-        mAdapter.put(0, new HelloWorldCard(getString(R.string.sample_card_one_title), getString(R.string.sample_card_one_message), cardCompiler));
-        mAdapter.put(1, new HelloWorldCard(getString(R.string.sample_card_two_title), getString(R.string.sample_card_two_message), cardCompiler));
-        mAdapter.put(2, new HelloWorldCard(getString(R.string.sample_card_three_title), getString(R.string.sample_card_three_message), cardCompiler));
+        mCardsContainer.put(0, new HelloWorldCard(getString(R.string.sample_card_one_title), getString(R.string.sample_card_one_message), cardCompiler));
+        mCardsContainer.put(1, new HelloWorldCard(getString(R.string.sample_card_two_title), getString(R.string.sample_card_two_message), cardCompiler));
+        mCardsContainer.put(2, new HelloWorldCard(getString(R.string.sample_card_three_title), getString(R.string.sample_card_three_message), cardCompiler));
     }
 }

@@ -11,7 +11,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import it.seaba83.material_swipe_cards.R;
+import it.seaba83.material_swipe_cards.adapters.CardsPagerAdapter;
 import it.seaba83.material_swipe_cards.general.Utils;
+import it.seaba83.material_swipe_cards.model.AbstractCardModel;
 
 
 /**
@@ -64,6 +66,7 @@ public class CustomCardViewContainer extends LinearLayout {
         setBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.transparent));
         mPager = (ViewPager) findViewById(R.id.pager);
         mIndicatorLayout = (LinearLayout) findViewById(R.id.indicator_layout);
+        setAdapter(new CardsPagerAdapter(getContext(), this));
     }
 
     public void setAdapter(PagerAdapter adapter){
@@ -72,8 +75,14 @@ public class CustomCardViewContainer extends LinearLayout {
         onPageAdded();
     }
 
-    public PagerAdapter getAdapter(){
-        return mPager.getAdapter();
+    public CardsPagerAdapter getAdapter(){
+        return (CardsPagerAdapter)mPager.getAdapter();
+    }
+
+    public void put(int position, AbstractCardModel cardModel){
+        if (getAdapter() != null){
+            getAdapter().put(position, cardModel);
+        }
     }
 
 

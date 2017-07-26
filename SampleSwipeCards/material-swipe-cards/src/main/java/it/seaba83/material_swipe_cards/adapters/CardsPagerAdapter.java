@@ -18,7 +18,7 @@ import it.seaba83.material_swipe_cards.model.BaseCardError;
  * Created by Marco on 25/07/2017.
  */
 
-public abstract class CardsPagerAdapter extends PagerAdapter {
+public class CardsPagerAdapter extends PagerAdapter {
 
     private Context mContext;
     private ArrayList<AbstractCardModel> mCards;
@@ -39,12 +39,14 @@ public abstract class CardsPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup collection, int position) {
         LinearLayout currentFrame = newFrame();
-        currentFrame.addView(getView(position), new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+        currentFrame.addView(getView(position, getList().get(position)), new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
         collection.addView(currentFrame);
         return currentFrame;
     }
 
-    public abstract View getView(int position);
+    public View getView(int position, AbstractCardModel currentItem){
+        return currentItem.compile();
+    }
 
     @Override
     public void destroyItem(ViewGroup collection, int position, Object view) {
