@@ -45,6 +45,7 @@ public class CardsPagerAdapter extends PagerAdapter {
     }
 
     public View getView(int position, AbstractCardModel currentItem){
+        currentItem.setMainColor(mCardsContainer.getMainColor());
         return currentItem.compile();
     }
 
@@ -73,14 +74,14 @@ public class CardsPagerAdapter extends PagerAdapter {
     }
 
     public void setProgress(int position, boolean value){
-        BaseCard card = new BaseCard();
+        BaseCard card = new BaseCard(getContext());
         card.setProgress(value);
         put(position, card);
         notifyDataSetChanged();
     }
 
     public void setError(int position, String message, View.OnClickListener clickListener){
-        BaseCard card = new BaseCard();
+        BaseCard card = new BaseCard(getContext());
         BaseCardError error = new BaseCardError();
         error.setMessage(message);
         error.setButtonClickListener(clickListener);
@@ -106,7 +107,7 @@ public class CardsPagerAdapter extends PagerAdapter {
     }
 
     private void addDefaultCard(){
-        AbstractCardModel cardModel = new BaseCard();
+        AbstractCardModel cardModel = new BaseCard(getContext());
         cardModel.setProgress(true);
         put(0, cardModel);
     }

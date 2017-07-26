@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import it.seaba83.material_swipe_cards.custom.CustomCardViewContainer;
+import it.seaba83.material_swipe_cards.model.BaseCard;
 import it.seaba83.sampleswipecards.compilers.VaderCardCompiler;
 import it.seaba83.sampleswipecards.compilers.HelloWorldCardCompiler;
 import it.seaba83.sampleswipecards.model.VaderCard;
@@ -28,17 +29,17 @@ public class MainActivity extends AppCompatActivity {
         mCardsContainer.put(1, new HelloWorldCard(getString(R.string.sample_card_two_title), getString(R.string.sample_card_two_message), helloWorldCardCompiler));
         mCardsContainer.put(2, new HelloWorldCard(getString(R.string.sample_card_three_title), getString(R.string.sample_card_three_message), helloWorldCardCompiler));
 
-        VaderCard byeByeCard = new VaderCard();
-        byeByeCard.setCompiler(new VaderCardCompiler(this));
-        byeByeCard.setImage(ContextCompat.getDrawable(MainActivity.this, R.drawable.vader));
-        byeByeCard.setMessage(getString(R.string.vader_message));
-        byeByeCard.setButtonLabel(getString(R.string.vader_label_button));
-        byeByeCard.setClickListener(new View.OnClickListener() {
+        VaderCard vaderCard = new VaderCard();
+        vaderCard.setCompiler(new VaderCardCompiler(this));
+        vaderCard.setImage(ContextCompat.getDrawable(MainActivity.this, R.drawable.vader));
+        vaderCard.setMessage(getString(R.string.vader_message));
+        vaderCard.setButtonLabel(getString(R.string.vader_label_button));
+        vaderCard.setClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(MainActivity.this, getString(R.string.vader_action_example), Toast.LENGTH_SHORT).show();
             }
         });
-        mCardsContainer.put(3, byeByeCard);
+        mCardsContainer.put(3, vaderCard);
     }
 }

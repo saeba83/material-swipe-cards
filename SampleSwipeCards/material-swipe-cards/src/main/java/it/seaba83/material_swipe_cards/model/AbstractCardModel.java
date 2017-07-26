@@ -14,6 +14,7 @@ public abstract class AbstractCardModel {
     private BaseCardError error;
     private boolean progress;
     private AbstractCardCompiler mCompiler;
+    private int mMainColor;
 
     public int getType() {
         return type;
@@ -49,5 +50,13 @@ public abstract class AbstractCardModel {
 
     public CustomCardView compile(){
         return getCompiler().compile(this);
+    }
+
+    public int getMainColor(){
+        return this.mMainColor;
+    }
+
+    public void setMainColor(int color){
+        this.mMainColor = color;
     }
 }

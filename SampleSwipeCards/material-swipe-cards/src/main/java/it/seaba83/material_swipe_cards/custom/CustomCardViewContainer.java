@@ -79,9 +79,19 @@ public class CustomCardViewContainer extends LinearLayout {
         return (CardsPagerAdapter)mPager.getAdapter();
     }
 
+    public int getMainColor(){
+        return this.mMainColor;
+    }
+
     public void put(int position, AbstractCardModel cardModel){
         if (getAdapter() != null){
             getAdapter().put(position, cardModel);
+        }
+    }
+
+    public void setProgress(int position, boolean value){
+        if (getAdapter() != null){
+            getAdapter().setProgress(position, value);
         }
     }
 

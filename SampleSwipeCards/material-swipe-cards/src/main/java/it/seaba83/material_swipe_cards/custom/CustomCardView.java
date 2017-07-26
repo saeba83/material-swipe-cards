@@ -2,6 +2,8 @@ package it.seaba83.material_swipe_cards.custom;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.PorterDuff;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -27,6 +29,8 @@ public class CustomCardView extends CardView {
 
     private boolean isProgress = false;
     private int textColor;
+    private int progressColor;
+
     private int state = 0;
 
     private ProgressBar mProgressView;
@@ -55,6 +59,7 @@ public class CustomCardView extends CardView {
         TypedArray attributes = getContext().obtainStyledAttributes(attrs, R.styleable.CustomCardView, 0, 0);
         isProgress = attributes.getBoolean(R.styleable.CustomCardView_progress, false);
         textColor = attributes.getColor(R.styleable.CustomCardView_textColor,0);
+        progressColor = attributes.getColor(R.styleable.CustomCardView_progressColor, ContextCompat.getColor(getContext(), R.color.color_default_foreground));
         attributes.recycle();
 
     }
@@ -82,6 +87,7 @@ public class CustomCardView extends CardView {
 
         if (mProgressView != null) {
             state = CARD_STATE_PROGRESS;
+            mProgressView.getIndeterminateDrawable().setColorFilter(getProgressColor(), PorterDuff.Mode.SRC_IN);
             mProgressView.setVisibility(value ? VISIBLE : GONE);
         }
         if (mDataContainerLayout != null){
@@ -137,5 +143,13 @@ public class CustomCardView extends CardView {
 
     public int getState(){
         return state;
+    }
+
+    public int getProgressColor(){
+        return this.progressColor;
+    }
+
+    public void setProgressColor(int color){
+        this.progressColor = color;
     }
 }
