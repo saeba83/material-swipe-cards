@@ -16,6 +16,10 @@ public abstract class AbstractCardModel {
     private AbstractCardCompiler mCompiler;
     private int mMainColor;
 
+    public AbstractCardModel(){
+        setType(CardTypes.CARD_TYPE_COMMON);
+    }
+
     public int getType() {
         return type;
     }
@@ -26,6 +30,10 @@ public abstract class AbstractCardModel {
 
     public boolean isError() {
         return (error != null);
+    }
+
+    public BaseCardError getError(){
+        return this.error;
     }
 
     public void setError(BaseCardError error) {

@@ -95,6 +95,12 @@ public class CustomCardViewContainer extends LinearLayout {
         }
     }
 
+    public void setError(int position, String message, String buttonLabel, OnClickListener clickListener){
+        if (getAdapter() != null){
+            getAdapter().setError(position, message, buttonLabel, clickListener);
+        }
+    }
+
 
     private void createPageIndicator(int itemsNumber){
         mIndicatorLayout.removeAllViews();

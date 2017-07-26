@@ -13,13 +13,19 @@ public class BaseCard extends AbstractCardModel {
 
     public BaseCard(Context context){
         setType(CardTypes.CARD_TYPE_BASE);
-        setProgress(true);
+        if (!isError()) {
+            setProgress(true);
+        }
         setCompiler(new AbstractCardCompiler(context) {
             @Override
             public CustomCardView compile(AbstractCardModel cardModel) {
                 CustomCardView cardView = new CustomCardView(getContext());
                 cardView.setProgressColor(getMainColor());
-                cardView.setProgress(true);
+                cardView.setButtonTextColor(getMainColor());
+                cardView.setProgress(BaseCard.this.isProgress());
+                if (isError()) {
+                    cardView.setError(getError().getMessage(), getError().getButtonLabel(), getError().getButtonClickListener());
+                }
                 return cardView;
             }
         });

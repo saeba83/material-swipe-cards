@@ -29,6 +29,7 @@ public class CustomCardView extends CardView {
 
     private boolean isProgress = false;
     private int textColor;
+    private int buttonTextColor;
     private int progressColor;
 
     private int state = 0;
@@ -58,13 +59,18 @@ public class CustomCardView extends CardView {
         init();
         TypedArray attributes = getContext().obtainStyledAttributes(attrs, R.styleable.CustomCardView, 0, 0);
         isProgress = attributes.getBoolean(R.styleable.CustomCardView_progress, false);
-        textColor = attributes.getColor(R.styleable.CustomCardView_textColor,0);
+        textColor = attributes.getColor(R.styleable.CustomCardView_textColor, ContextCompat.getColor(getContext(),android.R.color.darker_gray));
+        buttonTextColor = attributes.getColor(R.styleable.CustomCardView_buttonTextColor,ContextCompat.getColor(getContext(), R.color.color_default_foreground));
         progressColor = attributes.getColor(R.styleable.CustomCardView_progressColor, ContextCompat.getColor(getContext(), R.color.color_default_foreground));
         attributes.recycle();
-
     }
 
     private void init(){
+
+        setTextColor(ContextCompat.getColor(getContext(),android.R.color.darker_gray));
+        setButtonTextColor(ContextCompat.getColor(getContext(), R.color.color_default_foreground));
+        setProgressColor(ContextCompat.getColor(getContext(), R.color.color_default_foreground));
+
         setUseCompatPadding(true);
         setCardElevation(getContext().getResources().getDimension(R.dimen.card_elevation_size));
 
@@ -100,7 +106,7 @@ public class CustomCardView extends CardView {
         }
     }
 
-    public void setError(String message, OnClickListener clickListener){
+    public void setError(String message, String buttonLabel, OnClickListener clickListener){
         setVisibility(VISIBLE);
         if (mProgressView != null) {
             mProgressView.setVisibility(GONE);
@@ -113,7 +119,10 @@ public class CustomCardView extends CardView {
             state = CARD_STATE_ERROR;
             mErrorContainerLayout.setVisibility(VISIBLE);
             mErrorTxt.setText(message);
+            mErrorTxt.setTextColor(getTextColor());
             if (clickListener != null){
+                mErrorRetryButton.setText(buttonLabel);
+                mErrorRetryButton.setTextColor(getButtonTextColor());
                 mErrorRetryButton.setVisibility(View.VISIBLE);
                 mErrorRetryButton.setOnClickListener(clickListener);
             }else{
@@ -151,5 +160,21 @@ public class CustomCardView extends CardView {
 
     public void setProgressColor(int color){
         this.progressColor = color;
+    }
+
+    public void setTextColor(int color){
+        this.textColor = color;
+    }
+
+    public int getTextColor(){
+        return this.textColor;
+    }
+
+    public void setButtonTextColor(int color){
+        this.buttonTextColor = color;
+    }
+
+    public int getButtonTextColor(){
+        return this.buttonTextColor;
     }
 }

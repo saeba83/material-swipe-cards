@@ -80,10 +80,11 @@ public class CardsPagerAdapter extends PagerAdapter {
         notifyDataSetChanged();
     }
 
-    public void setError(int position, String message, View.OnClickListener clickListener){
+    public void setError(int position, String message, String buttonLabel, View.OnClickListener clickListener){
         BaseCard card = new BaseCard(getContext());
         BaseCardError error = new BaseCardError();
         error.setMessage(message);
+        error.setButtonLabel(buttonLabel);
         error.setButtonClickListener(clickListener);
         card.setError(error);
         put(position, card);

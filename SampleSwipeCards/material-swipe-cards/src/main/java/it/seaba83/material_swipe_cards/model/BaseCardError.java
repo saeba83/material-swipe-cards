@@ -10,6 +10,8 @@ import android.view.View;
 public class BaseCardError {
 
     private String message;
+    private String buttonLabel;
+
     private View.OnClickListener buttonClickListener;
 
     public String getMessage() {
@@ -26,5 +28,13 @@ public class BaseCardError {
 
     public void setButtonClickListener(View.OnClickListener buttonClickListener) {
         this.buttonClickListener = buttonClickListener;
+    }
+
+    public String getButtonLabel() {
+        return buttonLabel;
+    }
+
+    public void setButtonLabel(String buttonLabel) {
+        this.buttonLabel = buttonLabel;
     }
 }

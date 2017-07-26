@@ -7,4 +7,5 @@ package it.seaba83.material_swipe_cards.model;
 public class CardTypes {
 
     public static final int CARD_TYPE_BASE = 1;
+    public static final int CARD_TYPE_COMMON = 2;
 }
