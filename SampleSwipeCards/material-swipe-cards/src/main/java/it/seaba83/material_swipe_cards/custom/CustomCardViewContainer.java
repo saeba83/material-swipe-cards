@@ -134,8 +134,10 @@ public class CustomCardViewContainer extends LinearLayout {
                 if (i== position){
                     selectedIndicator.setBackgroundResource(R.drawable.custom_pager_indicator_circle_selected);
                     ((GradientDrawable) selectedIndicator.getBackground()).setColor(mMainColor);
+                    resizeIndicator(selectedIndicator, true);
                 }else{
                     selectedIndicator.setBackgroundResource(R.drawable.custom_pager_indicator_circle_unselected);
+                    resizeIndicator(selectedIndicator, false);
                 }
             }
         }
@@ -146,6 +148,13 @@ public class CustomCardViewContainer extends LinearLayout {
             mItemsNumber = getAdapter().getCount();
             createPageIndicator(mItemsNumber);
         }
+    }
+
+    private void resizeIndicator(View currentItem, boolean selected){
+        LayoutParams layoutParams = selected ? new LayoutParams((int) getContext().getResources().getDimension(R.dimen.indicator_selected_radius_size),(int) getContext().getResources().getDimension(R.dimen.indicator_selected_radius_size))
+                : new LayoutParams((int) getContext().getResources().getDimension(R.dimen.indicator_radius_size),(int) getContext().getResources().getDimension(R.dimen.indicator_radius_size));
+        layoutParams.setMargins((int)getContext().getResources().getDimension(R.dimen.indicator_margins_horizontal), (int)getContext().getResources().getDimension(R.dimen.indicator_margins_top), (int) getContext().getResources().getDimension(R.dimen.indicator_margins_horizontal), (int)getContext().getResources().getDimension(R.dimen.indicator_margins_bottom));
+        currentItem.setLayoutParams(layoutParams);
     }
 
 }
