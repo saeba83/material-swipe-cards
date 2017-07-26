@@ -23,20 +23,11 @@ public class SwipeCardsAdapter extends CardsPagerAdapter {
 
     public SwipeCardsAdapter(Context context, CustomCardViewContainer cardsContainer) {
         super(context, cardsContainer);
-        this.mInflater = LayoutInflater.from(getContext());
     }
 
     @Override
     public View getView(int position) {
         HelloWorldCard currentItem = (HelloWorldCard) this.getList().get(position);
-        CustomCardView cardView = new CustomCardView(getContext());
-        ViewGroup viewGroup = (ViewGroup) mInflater.inflate(R.layout.genric_card_view_layout, null);
-        TextView titleTxt = (TextView) viewGroup.findViewById(R.id.title_txt);
-        TextView messageTxt = (TextView) viewGroup.findViewById(R.id.message_txt);
-        titleTxt.setText(currentItem.getTitle());
-        messageTxt.setText(currentItem.getMessage());
-
-        cardView.addView(viewGroup, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-        return cardView;
+        return currentItem.compile();
     }
 }

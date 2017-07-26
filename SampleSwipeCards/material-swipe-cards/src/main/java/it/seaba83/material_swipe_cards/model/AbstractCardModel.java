@@ -1,6 +1,9 @@
 package it.seaba83.material_swipe_cards.model;
 
 
+import it.seaba83.material_swipe_cards.compilers.AbstractCardCompiler;
+import it.seaba83.material_swipe_cards.custom.CustomCardView;
+
 /**
  * Created by Marco on 25/07/2017.
  */
@@ -10,6 +13,7 @@ public abstract class AbstractCardModel {
     private int type;
     private BaseCardError error;
     private boolean progress;
+    private AbstractCardCompiler mCompiler;
 
     public int getType() {
         return type;
@@ -33,5 +37,17 @@ public abstract class AbstractCardModel {
 
     public void setProgress(boolean progress) {
         this.progress = progress;
+    }
+
+    public void setCompiler(AbstractCardCompiler compiler){
+        this.mCompiler = compiler;
+    }
+
+    public AbstractCardCompiler getCompiler(){
+        return this.mCompiler;
+    }
+
+    public CustomCardView compile(){
+        return getCompiler().compile(this);
     }
 }
