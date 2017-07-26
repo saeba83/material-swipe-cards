@@ -12,4 +12,14 @@
     <string name="vader_label_button">Click me</string>
     <string name="vader_action_example">I am your father</string>
 
+    <string name="yoda_message">Young Skywalker</string>
+    <string name="yoda_label_button">Click me</string>
+    <string name="yoda_action_example">No, no different, only different in your mind. You must unlearn what you have learn. No try not. Do, or do not. There is no try</string>
+
+    <string name="error_test_message">Ops !! there is a problem</string>
+    <string name="error_retry_label">Retry</string>
+
+    <string name="problem_solved_title">Ohh yess!!</string>
+    <string name="problem_solved_message">Now the problem is solved :)</string>
+
 </resources>

@@ -6,11 +6,36 @@
     android:layout_height="match_parent"
     tools:context="it.seaba83.sampleswipecards.MainActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
     <it.seaba83.material_swipe_cards.custom.CustomCardViewContainer
         android:layout_marginBottom="10dp"
-        app:mainColor="@android:color/holo_green_dark"
-        android:id="@+id/cards_container"
+        app:mainColor="@color/green_indicator"
+        android:id="@+id/example_cards_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <it.seaba83.material_swipe_cards.custom.CustomCardViewContainer
+        android:layout_marginBottom="10dp"
+        app:mainColor="@color/blue_indicator"
+        android:id="@+id/starwars_cards_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <it.seaba83.material_swipe_cards.custom.CustomCardViewContainer
+        android:layout_marginBottom="10dp"
+        app:mainColor="@color/red_indicator"
+        android:id="@+id/colored_cards_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>

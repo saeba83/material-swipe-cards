@@ -9,7 +9,7 @@ import it.seaba83.material_swipe_cards.model.AbstractCardModel;
  * Created by Marco on 26/07/2017.
  */
 
-public class VaderCard extends AbstractCardModel {
+public class CharacterCard extends AbstractCardModel {
 
     private Drawable image;
     private String message;

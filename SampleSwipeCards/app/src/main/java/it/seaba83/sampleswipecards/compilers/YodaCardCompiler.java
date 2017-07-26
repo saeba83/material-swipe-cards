@@ -18,10 +18,10 @@ import it.seaba83.sampleswipecards.model.CharacterCard;
  * Created by Marco on 26/07/2017.
  */
 
-public class VaderCardCompiler extends AbstractCardCompiler {
+public class YodaCardCompiler extends AbstractCardCompiler {
 
 
-    public VaderCardCompiler(Context context) {
+    public YodaCardCompiler(Context context) {
         super(context);
     }
 
@@ -31,7 +31,7 @@ public class VaderCardCompiler extends AbstractCardCompiler {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         CustomCardView cardView = new CustomCardView(getContext());
 
-        ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.vader_card_layout, null);
+        ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.yoda_card_layout, null);
         ImageView imageView = (ImageView) viewGroup.findViewById(R.id.imageView);
         TextView messageTxt = (TextView) viewGroup.findViewById(R.id.message_txt);
         Button button = (Button) viewGroup.findViewById(R.id.button);
