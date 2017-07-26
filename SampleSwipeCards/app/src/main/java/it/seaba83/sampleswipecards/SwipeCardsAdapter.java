@@ -21,8 +21,8 @@ public class SwipeCardsAdapter extends CardsPagerAdapter {
 
     private LayoutInflater mInflater;
 
-    public SwipeCardsAdapter(Context context, CustomCardViewContainer pager) {
-        super(context, pager);
+    public SwipeCardsAdapter(Context context, CustomCardViewContainer cardsContainer) {
+        super(context, cardsContainer);
         this.mInflater = LayoutInflater.from(getContext());
     }
 

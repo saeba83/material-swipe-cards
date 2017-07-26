@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
         mCardsContainer = (CustomCardViewContainer) findViewById(R.id.cards_container);
 
         mAdapter = new SwipeCardsAdapter(this, mCardsContainer);
-        mCardsContainer.setAdapter(mAdapter);
 
         mAdapter.put(0, new HelloWorldCard(getString(R.string.sample_card_one_title), getString(R.string.sample_card_one_message)));
         mAdapter.put(1, new HelloWorldCard(getString(R.string.sample_card_two_title), getString(R.string.sample_card_two_message)));

@@ -22,13 +22,14 @@ public abstract class CardsPagerAdapter extends PagerAdapter {
 
     private Context mContext;
     private ArrayList<AbstractCardModel> mCards;
-    private CustomCardViewContainer mPager;
+    private CustomCardViewContainer mCardsContainer;
 
 
     public CardsPagerAdapter(Context context, CustomCardViewContainer pager) {
         this.mContext = context;
-        this.mPager = pager;
+        this.mCardsContainer = pager;
         reset();
+        mCardsContainer.setAdapter(this);
     }
 
     protected Context getContext(){
@@ -93,7 +94,7 @@ public abstract class CardsPagerAdapter extends PagerAdapter {
             mCards.add(position, card);
         }
         notifyDataSetChanged();
-        this.mPager.onPageAdded();
+        this.mCardsContainer.onPageAdded();
     }
 
     public void reset(){
