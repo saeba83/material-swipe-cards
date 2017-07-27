@@ -1,11 +1,9 @@
 package it.seaba83.sampleswipecards.compilers;
 
 import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
 
 import it.seaba83.material_swipe_cards.compilers.AbstractCardCompiler;
-import it.seaba83.material_swipe_cards.custom.CustomCardView;
+import it.seaba83.material_swipe_cards.custom.StateCardView;
 import it.seaba83.material_swipe_cards.model.AbstractCardModel;
 import it.seaba83.sampleswipecards.model.ColoredCard;
 
@@ -20,9 +18,9 @@ public class ColoredCardCompiler extends AbstractCardCompiler {
     }
 
     @Override
-    public CustomCardView compile(AbstractCardModel cardModel) {
+    public StateCardView compile(AbstractCardModel cardModel) {
         ColoredCard currentItem = (ColoredCard) cardModel;
-        CustomCardView cardView = new CustomCardView(getContext());
+        StateCardView cardView = new StateCardView(getContext());
         cardView.setBackgroundColor(currentItem.getColor());
         return cardView;
     }

@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import it.seaba83.material_swipe_cards.compilers.AbstractCardCompiler;
-import it.seaba83.material_swipe_cards.custom.CustomCardView;
+import it.seaba83.material_swipe_cards.custom.StateCardView;
 import it.seaba83.material_swipe_cards.model.AbstractCardModel;
 import it.seaba83.sampleswipecards.R;
 import it.seaba83.sampleswipecards.model.CharacterCard;
@@ -26,10 +26,10 @@ public class VaderCardCompiler extends AbstractCardCompiler {
     }
 
     @Override
-    public CustomCardView compile(AbstractCardModel cardModel) {
+    public StateCardView compile(AbstractCardModel cardModel) {
         CharacterCard currentItem = (CharacterCard) cardModel;
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        CustomCardView cardView = new CustomCardView(getContext());
+        StateCardView cardView = new StateCardView(getContext());
 
         ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.vader_card_layout, null);
         ImageView imageView = (ImageView) viewGroup.findViewById(R.id.imageView);

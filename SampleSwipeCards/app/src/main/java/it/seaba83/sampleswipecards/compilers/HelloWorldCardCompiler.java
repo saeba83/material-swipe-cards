@@ -7,7 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import it.seaba83.material_swipe_cards.compilers.AbstractCardCompiler;
-import it.seaba83.material_swipe_cards.custom.CustomCardView;
+import it.seaba83.material_swipe_cards.custom.StateCardView;
 import it.seaba83.material_swipe_cards.model.AbstractCardModel;
 import it.seaba83.sampleswipecards.R;
 import it.seaba83.sampleswipecards.model.HelloWorldCard;
@@ -23,10 +23,10 @@ public class HelloWorldCardCompiler extends AbstractCardCompiler {
     }
 
     @Override
-    public CustomCardView compile(AbstractCardModel cardModel) {
+    public StateCardView compile(AbstractCardModel cardModel) {
         HelloWorldCard currentItem = (HelloWorldCard) cardModel;
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        CustomCardView cardView = new CustomCardView(getContext());
+        StateCardView cardView = new StateCardView(getContext());
         ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.genric_card_view_layout, null);
         TextView titleTxt = (TextView) viewGroup.findViewById(R.id.title_txt);
         TextView messageTxt = (TextView) viewGroup.findViewById(R.id.message_txt);

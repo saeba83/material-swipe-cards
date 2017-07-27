@@ -2,7 +2,7 @@ package it.seaba83.material_swipe_cards.model;
 
 
 import it.seaba83.material_swipe_cards.compilers.AbstractCardCompiler;
-import it.seaba83.material_swipe_cards.custom.CustomCardView;
+import it.seaba83.material_swipe_cards.custom.StateCardView;
 
 /**
  * Created by Marco on 25/07/2017.
@@ -56,7 +56,7 @@ public abstract class AbstractCardModel {
         return this.mCompiler;
     }
 
-    public CustomCardView compile(){
+    public StateCardView compile(){
         return getCompiler().compile(this);
     }
 

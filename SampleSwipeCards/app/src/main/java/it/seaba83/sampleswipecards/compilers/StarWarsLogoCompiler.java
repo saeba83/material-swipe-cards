@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import it.seaba83.material_swipe_cards.compilers.AbstractCardCompiler;
-import it.seaba83.material_swipe_cards.custom.CustomCardView;
+import it.seaba83.material_swipe_cards.custom.StateCardView;
 import it.seaba83.material_swipe_cards.model.AbstractCardModel;
 import it.seaba83.sampleswipecards.R;
 import it.seaba83.sampleswipecards.model.StarWarsLogoCard;
@@ -23,10 +23,10 @@ public class StarWarsLogoCompiler extends AbstractCardCompiler {
     }
 
     @Override
-    public CustomCardView compile(AbstractCardModel cardModel) {
+    public StateCardView compile(AbstractCardModel cardModel) {
         StarWarsLogoCard currentItem = (StarWarsLogoCard) cardModel;
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        CustomCardView cardView = new CustomCardView(getContext());
+        StateCardView cardView = new StateCardView(getContext());
         ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.starwars_logo_card_layout, null);
         ImageView imageView = (ImageView) viewGroup.findViewById(R.id.imageView);
         imageView.setImageDrawable(currentItem.getImage());

@@ -2,7 +2,7 @@ package it.seaba83.material_swipe_cards.compilers;
 
 import android.content.Context;
 
-import it.seaba83.material_swipe_cards.custom.CustomCardView;
+import it.seaba83.material_swipe_cards.custom.StateCardView;
 import it.seaba83.material_swipe_cards.model.AbstractCardModel;
 
 /**
@@ -25,5 +25,5 @@ public abstract class AbstractCardCompiler {
         this.mContext = context;
     }
 
-    public abstract CustomCardView compile(AbstractCardModel cardModel);
+    public abstract StateCardView compile(AbstractCardModel cardModel);
 }

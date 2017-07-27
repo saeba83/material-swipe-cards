@@ -17,11 +17,24 @@ import android.widget.TextView;
 import it.seaba83.material_swipe_cards.R;
 
 
-/**
- * Created by Marco on 25/07/2017.
+/*
+ * material-swipe-cards library for Android
+ * Copyright (c) 2017 Marco Caridi (https://github.com/saeba83).
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
-public class CustomCardView extends CardView {
+public class StateCardView extends CardView {
 
     public final static int CARD_STATE_DATA = 0;
     public final static int CARD_STATE_PROGRESS = 1;
@@ -40,30 +53,39 @@ public class CustomCardView extends CardView {
     private TextView mErrorTxt;
     private Button mErrorRetryButton;
 
-    public CustomCardView(Context context) {
+    public StateCardView(Context context) {
         super(context, null, R.style.CustomCardStyle);
         init();
     }
 
-    public CustomCardView(Context context, AttributeSet attrs) {
+    public StateCardView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initWithAttrs(attrs);
     }
 
-    public CustomCardView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public StateCardView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, null, R.style.CustomCardStyle);
         initWithAttrs(attrs);
     }
 
+    /**
+     * Initialize inflated layout component and add new adapter instance with stylable attributes
+     * @param attrs
+     */
+
     private void initWithAttrs(AttributeSet attrs){
         init();
-        TypedArray attributes = getContext().obtainStyledAttributes(attrs, R.styleable.CustomCardView, 0, 0);
-        isProgress = attributes.getBoolean(R.styleable.CustomCardView_progress, false);
-        textColor = attributes.getColor(R.styleable.CustomCardView_textColor, ContextCompat.getColor(getContext(),android.R.color.darker_gray));
-        buttonTextColor = attributes.getColor(R.styleable.CustomCardView_buttonTextColor,ContextCompat.getColor(getContext(), R.color.color_default_foreground));
-        progressColor = attributes.getColor(R.styleable.CustomCardView_progressColor, ContextCompat.getColor(getContext(), R.color.color_default_foreground));
+        TypedArray attributes = getContext().obtainStyledAttributes(attrs, R.styleable.StateCardView, 0, 0);
+        isProgress = attributes.getBoolean(R.styleable.StateCardView_progress, false);
+        textColor = attributes.getColor(R.styleable.StateCardView_textColor, ContextCompat.getColor(getContext(),android.R.color.darker_gray));
+        buttonTextColor = attributes.getColor(R.styleable.StateCardView_buttonTextColor,ContextCompat.getColor(getContext(), R.color.color_default_foreground));
+        progressColor = attributes.getColor(R.styleable.StateCardView_progressColor, ContextCompat.getColor(getContext(), R.color.color_default_foreground));
         attributes.recycle();
     }
+
+    /**
+     * Initialize inflated layout component and add new adapter instance
+     */
 
     private void init(){
 
@@ -85,6 +107,11 @@ public class CustomCardView extends CardView {
         setProgress(isProgress);
     }
 
+
+    /**
+     * Set card in progress state
+     * @param value if true set progress state
+     */
     public void setProgress(boolean value){
 
         if (value){
@@ -106,6 +133,12 @@ public class CustomCardView extends CardView {
         }
     }
 
+    /**
+     * Set card in error state
+     * @param message error message you want show in card
+     * @param buttonLabel button label you want show in card
+     * @param clickListener defines the action you want perform on button click
+     */
     public void setError(String message, String buttonLabel, OnClickListener clickListener){
         setVisibility(VISIBLE);
         if (mProgressView != null) {
@@ -131,6 +164,10 @@ public class CustomCardView extends CardView {
         }
     }
 
+    /**
+     * Override android view addView method to add views only in a defined viewGroup container
+     * @param child view you want add
+     */
     @Override
     public void addView(View child) {
         if (mDataContainerLayout != null){
@@ -141,6 +178,11 @@ public class CustomCardView extends CardView {
 
     }
 
+    /**
+     * Override android view addView method to add views only in a defined viewGroup container
+     * @param child view you want add
+     * @param params layoutParams to add child view
+     */
     @Override
     public void addView(View child, ViewGroup.LayoutParams params) {
         if (mDataContainerLayout != null){
@@ -150,30 +192,58 @@ public class CustomCardView extends CardView {
         }
     }
 
+    /**
+     *
+     * @return the current card state
+     */
     public int getState(){
         return state;
     }
 
+    /**
+     *
+     * @return the current progressBar color
+     */
     public int getProgressColor(){
         return this.progressColor;
     }
 
+    /**
+     * set progressBar color
+      * @param color selected color
+     */
     public void setProgressColor(int color){
         this.progressColor = color;
     }
 
+    /**
+     * Set text color for default text messages
+     * @param color selected color
+     */
     public void setTextColor(int color){
         this.textColor = color;
     }
+
+    /**
+     * @return text color for default text messages
+     */
 
     public int getTextColor(){
         return this.textColor;
     }
 
+    /**
+     * set default buttons text color
+     * @param color selected color
+     */
     public void setButtonTextColor(int color){
         this.buttonTextColor = color;
     }
 
+    /**
+     *
+     * @return dafault buttons text color
+     */
     public int getButtonTextColor(){
         return this.buttonTextColor;
     }
