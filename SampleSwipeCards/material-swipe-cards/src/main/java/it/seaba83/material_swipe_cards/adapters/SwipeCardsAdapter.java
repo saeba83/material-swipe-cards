@@ -12,7 +12,7 @@ import it.seaba83.material_swipe_cards.R;
 import it.seaba83.material_swipe_cards.custom.SwipeCardViewContainer;
 import it.seaba83.material_swipe_cards.model.AbstractCardModel;
 import it.seaba83.material_swipe_cards.model.BaseCard;
-import it.seaba83.material_swipe_cards.model.BaseCardError;
+import it.seaba83.material_swipe_cards.model.CardError;
 
 /*
  * material-swipe-cards library for Android
@@ -122,7 +122,7 @@ public class SwipeCardsAdapter extends PagerAdapter {
      */
     public void setError(int position, String message, String buttonLabel, View.OnClickListener clickListener){
         BaseCard card = new BaseCard(getContext());
-        BaseCardError error = new BaseCardError();
+        CardError error = new CardError();
         error.setMessage(message);
         error.setButtonLabel(buttonLabel);
         error.setButtonClickListener(clickListener);
