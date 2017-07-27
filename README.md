@@ -9,7 +9,7 @@ An Androd custom view component that allow to manage material-style cardViews on
 
 1.	Add it.seaba83.material_swipe_cards.custom.SwipeCardViewContainer in your xml layout
 
-```
+```xml
  <it.seaba83.material_swipe_cards.custom.SwipeCardViewContainer
         android:layout_marginBottom="3dp"
         app:mainColor="@color/green_indicator"
@@ -19,12 +19,12 @@ An Androd custom view component that allow to manage material-style cardViews on
 ```
 
 2.	Associate reference in your activity
-```
+```java
         SwipeCardViewContainer mExampleCardsContainer = (SwipeCardViewContainer) findViewById(R.id.example_cards_container);
 ```
 
 3. Define a card template extending the class AbstractCardModel
-```
+```java
 public class HelloWorldCard extends AbstractCardModel {
 
     private String title;
@@ -56,7 +56,7 @@ public class HelloWorldCard extends AbstractCardModel {
 4. Define a card internal layout
 
 5. Add a compiler to your card model, exending AbstractCardCompiler. Override method compile() and here define the rules to match graphic layout and the model defined at point 3
-```
+```java
 public class HelloWorldCardCompiler extends AbstractCardCompiler {
 
     public HelloWorldCardCompiler(Context context) {
@@ -80,16 +80,33 @@ public class HelloWorldCardCompiler extends AbstractCardCompiler {
 ```
 
 6. Add your cardModel, with the associated compiler, to SwipeCardsContainer
-```
+```java
 HelloWorldCardCompiler helloWorldCardCompiler = new HelloWorldCardCompiler(this);
 mExampleCardsContainer.putCardView(0, new HelloWorldCard(getString(R.string.sample_card_one_title), getString(R.string.sample_card_one_message), helloWorldCardCompiler));
 ```
 
 7. And that's all. Remember that you cans set every card in progress or error state
-```
+```java
 mExampleCardsContainer.setProgress(0, true);
 ```
 
-```
+```java
 mExampleCardsContainer.setError(0, getString(R.string.error_test_message), getString(R.string.error_retry_label), errorClickListener);
 ```
+
+## License
+
+material-swipe-cards library for Android
+Copyright (c) 2017 Marco Caridi (https://github.com/saeba83).
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+ * limitations under the License.
