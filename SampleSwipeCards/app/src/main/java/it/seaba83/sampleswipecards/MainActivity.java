@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import it.seaba83.material_swipe_cards.custom.CustomCardViewContainer;
+import it.seaba83.material_swipe_cards.custom.SwipeCardViewContainer;
 import it.seaba83.sampleswipecards.compilers.ColoredCardCompiler;
 import it.seaba83.sampleswipecards.compilers.StarWarsLogoCompiler;
 import it.seaba83.sampleswipecards.compilers.VaderCardCompiler;
@@ -19,9 +19,9 @@ import it.seaba83.sampleswipecards.model.HelloWorldCard;
 
 public class MainActivity extends AppCompatActivity {
 
-    CustomCardViewContainer mExampleCardsContainer;
-    CustomCardViewContainer mStarWarsCardsContainer;
-    CustomCardViewContainer mColoredCardsContainer;
+    SwipeCardViewContainer mExampleCardsContainer;
+    SwipeCardViewContainer mStarWarsCardsContainer;
+    SwipeCardViewContainer mColoredCardsContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,25 +34,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createExampleCardsContainer(){
-        mExampleCardsContainer = (CustomCardViewContainer) findViewById(R.id.example_cards_container);
+        mExampleCardsContainer = (SwipeCardViewContainer) findViewById(R.id.example_cards_container);
         final HelloWorldCardCompiler helloWorldCardCompiler = new HelloWorldCardCompiler(this);
 
-        mExampleCardsContainer.put(0, new HelloWorldCard(getString(R.string.sample_card_one_title), getString(R.string.sample_card_one_message), helloWorldCardCompiler));
-        mExampleCardsContainer.put(1, new HelloWorldCard(getString(R.string.sample_card_two_title), getString(R.string.sample_card_two_message), helloWorldCardCompiler));
-        mExampleCardsContainer.put(2, new HelloWorldCard(getString(R.string.sample_card_three_title), getString(R.string.sample_card_three_message), helloWorldCardCompiler));
+        mExampleCardsContainer.putCardView(0, new HelloWorldCard(getString(R.string.sample_card_one_title), getString(R.string.sample_card_one_message), helloWorldCardCompiler));
+        mExampleCardsContainer.putCardView(1, new HelloWorldCard(getString(R.string.sample_card_two_title), getString(R.string.sample_card_two_message), helloWorldCardCompiler));
+        mExampleCardsContainer.putCardView(2, new HelloWorldCard(getString(R.string.sample_card_three_title), getString(R.string.sample_card_three_message), helloWorldCardCompiler));
 
         mExampleCardsContainer.setProgress(1, true);
 
         mExampleCardsContainer.setError(2, getString(R.string.error_test_message), getString(R.string.error_retry_label), new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mExampleCardsContainer.put(2, new HelloWorldCard(getString(R.string.problem_solved_title), getString(R.string.problem_solved_message), helloWorldCardCompiler));
+                mExampleCardsContainer.putCardView(2, new HelloWorldCard(getString(R.string.problem_solved_title), getString(R.string.problem_solved_message), helloWorldCardCompiler));
             }
         });
     }
 
     private void createStarWarsCardsContainer(){
-        mStarWarsCardsContainer = (CustomCardViewContainer) findViewById(R.id.starwars_cards_container);
+        mStarWarsCardsContainer = (SwipeCardViewContainer) findViewById(R.id.starwars_cards_container);
 
         CharacterCard vaderCard = new CharacterCard();
         vaderCard.setCompiler(new VaderCardCompiler(this));
@@ -79,19 +79,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
         StarWarsLogoCompiler starWarsLogoCompiler = new StarWarsLogoCompiler(MainActivity.this);
-        mStarWarsCardsContainer.put(0, new StarWarsLogoCard(ContextCompat.getDrawable(MainActivity.this, R.drawable.starwars_logo) ,starWarsLogoCompiler));
-        mStarWarsCardsContainer.put(1, yodaCard);
-        mStarWarsCardsContainer.put(2, vaderCard);
+        mStarWarsCardsContainer.putCardView(0, new StarWarsLogoCard(ContextCompat.getDrawable(MainActivity.this, R.drawable.starwars_logo) ,starWarsLogoCompiler));
+        mStarWarsCardsContainer.putCardView(1, yodaCard);
+        mStarWarsCardsContainer.putCardView(2, vaderCard);
     }
 
     private void createColoredCardsContainer(){
-        mColoredCardsContainer = (CustomCardViewContainer) findViewById(R.id.colored_cards_container);
+        mColoredCardsContainer = (SwipeCardViewContainer) findViewById(R.id.colored_cards_container);
 
         ColoredCardCompiler coloredCardCompiler = new ColoredCardCompiler(MainActivity.this);
 
-        mColoredCardsContainer.put(0, new ColoredCard(ContextCompat.getColor(MainActivity.this, R.color.green_indicator), coloredCardCompiler));
-        mColoredCardsContainer.put(1, new ColoredCard(ContextCompat.getColor(MainActivity.this, R.color.blue_indicator), coloredCardCompiler));
-        mColoredCardsContainer.put(2, new ColoredCard(ContextCompat.getColor(MainActivity.this, R.color.red_indicator), coloredCardCompiler));
-        mColoredCardsContainer.put(3, new ColoredCard(ContextCompat.getColor(MainActivity.this, R.color.colorAccent), coloredCardCompiler));
+        mColoredCardsContainer.putCardView(0, new ColoredCard(ContextCompat.getColor(MainActivity.this, R.color.green_indicator), coloredCardCompiler));
+        mColoredCardsContainer.putCardView(1, new ColoredCard(ContextCompat.getColor(MainActivity.this, R.color.blue_indicator), coloredCardCompiler));
+        mColoredCardsContainer.putCardView(2, new ColoredCard(ContextCompat.getColor(MainActivity.this, R.color.red_indicator), coloredCardCompiler));
+        mColoredCardsContainer.putCardView(3, new ColoredCard(ContextCompat.getColor(MainActivity.this, R.color.colorAccent), coloredCardCompiler));
     }
 }

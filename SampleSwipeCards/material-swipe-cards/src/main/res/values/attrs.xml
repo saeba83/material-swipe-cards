@@ -7,7 +7,7 @@
         <attr name="progressColor" format="color"/>
     </declare-styleable>
 
-    <declare-styleable name="CustomCardViewContainer">
+    <declare-styleable name="SwipeCardViewContainer">
         <attr name="mainColor" format="color"/>
     </declare-styleable>
 

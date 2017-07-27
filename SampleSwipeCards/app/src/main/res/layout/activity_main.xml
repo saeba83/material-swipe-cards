@@ -15,21 +15,21 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <it.seaba83.material_swipe_cards.custom.CustomCardViewContainer
+    <it.seaba83.material_swipe_cards.custom.SwipeCardViewContainer
         android:layout_marginBottom="3dp"
         app:mainColor="@color/green_indicator"
         android:id="@+id/example_cards_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <it.seaba83.material_swipe_cards.custom.CustomCardViewContainer
+    <it.seaba83.material_swipe_cards.custom.SwipeCardViewContainer
         android:layout_marginBottom="3dp"
         app:mainColor="@color/blue_indicator"
         android:id="@+id/starwars_cards_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <it.seaba83.material_swipe_cards.custom.CustomCardViewContainer
+    <it.seaba83.material_swipe_cards.custom.SwipeCardViewContainer
         android:layout_marginBottom="3dp"
         app:mainColor="@color/red_indicator"
         android:id="@+id/colored_cards_container"

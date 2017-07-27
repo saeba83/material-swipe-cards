@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 
 import it.seaba83.material_swipe_cards.R;
-import it.seaba83.material_swipe_cards.custom.CustomCardViewContainer;
+import it.seaba83.material_swipe_cards.custom.SwipeCardViewContainer;
 import it.seaba83.material_swipe_cards.model.AbstractCardModel;
 import it.seaba83.material_swipe_cards.model.BaseCard;
 import it.seaba83.material_swipe_cards.model.BaseCardError;
@@ -22,10 +22,10 @@ public class CardsPagerAdapter extends PagerAdapter {
 
     private Context mContext;
     private ArrayList<AbstractCardModel> mCards;
-    private CustomCardViewContainer mCardsContainer;
+    private SwipeCardViewContainer mCardsContainer;
 
 
-    public CardsPagerAdapter(Context context, CustomCardViewContainer pager) {
+    public CardsPagerAdapter(Context context, SwipeCardViewContainer pager) {
         this.mContext = context;
         this.mCardsContainer = pager;
         reset();
@@ -98,7 +98,7 @@ public class CardsPagerAdapter extends PagerAdapter {
             mCards.add(position, card);
         }
         notifyDataSetChanged();
-        this.mCardsContainer.onPageAdded();
+        this.mCardsContainer.onCardAdded();
     }
 
     public void reset(){
