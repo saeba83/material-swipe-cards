@@ -1,5 +1,7 @@
 # material-swipe-cards
 
+<img src="https://github.com/saeba83/material-swipe-cards/blob/master/graphics/20170727152705-726defe922.%5Bgif-2-mp4.com%5D.gif" width="30%" />
+
 ## What?
 An Androd custom view component that allow to manage material-style cardViews on a swipe controller and everyone with a distinct structure and layout.
 
