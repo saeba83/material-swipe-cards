@@ -1,0 +1,14 @@
+<resources>
+
+    <declare-styleable name="StateCardView">
+        <attr name="progress" format="boolean"/>
+        <attr name="textColor" format="color"/>
+        <attr name="buttonTextColor" format="color"/>
+        <attr name="progressColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="SwipeCardViewContainer">
+        <attr name="mainColor" format="color"/>
+    </declare-styleable>
+
+</resources>
