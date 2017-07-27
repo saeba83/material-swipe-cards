@@ -98,12 +98,12 @@ public class StateCardView extends CardView {
 
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rootView = inflater.inflate(R.layout.custom_cardview_layout, this, true);
-        mProgressView = (ProgressBar) rootView.findViewById(R.id.progressBar);
-        mDataContainerLayout = (LinearLayout) rootView.findViewById(R.id.container);
+        mProgressView = (ProgressBar) rootView.findViewById(R.id.progress_bar);
+        mDataContainerLayout = (LinearLayout) rootView.findViewById(R.id.data_container);
 
-        mErrorContainerLayout = (LinearLayout) rootView.findViewById(R.id.errorContainer);
-        mErrorTxt = (TextView) rootView.findViewById(R.id.errorMessageTxt);
-        mErrorRetryButton = (Button) rootView.findViewById(R.id.errorButton);
+        mErrorContainerLayout = (LinearLayout) rootView.findViewById(R.id.error_container);
+        mErrorTxt = (TextView) rootView.findViewById(R.id.error_message_txt);
+        mErrorRetryButton = (Button) rootView.findViewById(R.id.error_btn);
         setProgress(isProgress);
     }
 
