@@ -14,22 +14,35 @@ import it.seaba83.material_swipe_cards.model.AbstractCardModel;
 import it.seaba83.material_swipe_cards.model.BaseCard;
 import it.seaba83.material_swipe_cards.model.BaseCardError;
 
-/**
- * Created by Marco on 25/07/2017.
+/*
+ * material-swipe-cards library for Android
+ * Copyright (c) 2017 Marco Caridi (https://github.com/saeba83).
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
-public class CardsPagerAdapter extends PagerAdapter {
+public class SwipeCardsAdapter extends PagerAdapter {
 
     private Context mContext;
-    private ArrayList<AbstractCardModel> mCards;
-    private SwipeCardViewContainer mCardsContainer;
+    private ArrayList<AbstractCardModel> mItems;
+    private SwipeCardViewContainer mSwipeCardsContainer;
 
 
-    public CardsPagerAdapter(Context context, SwipeCardViewContainer pager) {
+    public SwipeCardsAdapter(Context context, SwipeCardViewContainer pager) {
         this.mContext = context;
-        this.mCardsContainer = pager;
+        this.mSwipeCardsContainer = pager;
         reset();
-        mCardsContainer.setAdapter(this);
+        mSwipeCardsContainer.setAdapter(this);
     }
 
     protected Context getContext(){
@@ -39,13 +52,19 @@ public class CardsPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup collection, int position) {
         LinearLayout currentFrame = newFrame();
-        currentFrame.addView(getView(position, getList().get(position)), new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+        currentFrame.addView(getView(position, getItems().get(position)), new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
         collection.addView(currentFrame);
         return currentFrame;
     }
 
+    /**
+     * Creates current cardView, it call cardModel compiler
+     * @param position current item position
+     * @param currentItem current cardModel
+     * @return created view
+     */
     public View getView(int position, AbstractCardModel currentItem){
-        currentItem.setMainColor(mCardsContainer.getMainColor());
+        currentItem.setMainColor(mSwipeCardsContainer.getMainColor());
         return currentItem.compile();
     }
 
@@ -54,9 +73,13 @@ public class CardsPagerAdapter extends PagerAdapter {
         collection.removeView((View) view);
     }
 
+    /**
+     *
+     * @return items list size
+     */
     @Override
     public int getCount() {
-        return this.mCards.size();
+        return this.mItems.size();
     }
 
     @Override
@@ -69,10 +92,19 @@ public class CardsPagerAdapter extends PagerAdapter {
         return view == object;
     }
 
-    public ArrayList<AbstractCardModel> getList(){
-        return this.mCards;
+    /**
+     *
+     * @return items list
+     */
+    public ArrayList<AbstractCardModel> getItems(){
+        return this.mItems;
     }
 
+    /**
+     * Set progress state to card in a defined position
+     * @param position where the card to set in progress state is
+     * @param value true if you want the card in progress state false else
+     */
     public void setProgress(int position, boolean value){
         BaseCard card = new BaseCard(getContext());
         card.setProgress(value);
@@ -80,6 +112,14 @@ public class CardsPagerAdapter extends PagerAdapter {
         notifyDataSetChanged();
     }
 
+
+    /**
+     * Set error state to card in a defined position
+     * @param position where the card to set in error state is
+     * @param message error message you want show in card
+     * @param buttonLabel button label you want show on error card button
+     * @param clickListener define the action you want execute on error button click
+     */
     public void setError(int position, String message, String buttonLabel, View.OnClickListener clickListener){
         BaseCard card = new BaseCard(getContext());
         BaseCardError error = new BaseCardError();
@@ -91,28 +131,43 @@ public class CardsPagerAdapter extends PagerAdapter {
         notifyDataSetChanged();
     }
 
+    /**
+     * Add or replace new card inside the component
+     * @param position where you want add the card
+     * @param card contains data to create the card
+     */
     public void put(int position, AbstractCardModel card){
-        if (position < mCards.size()){
-            mCards.set(position, card);
+        if (position < mItems.size()){
+            mItems.set(position, card);
         }else{
-            mCards.add(position, card);
+            mItems.add(position, card);
         }
         notifyDataSetChanged();
-        this.mCardsContainer.onCardAdded();
+        this.mSwipeCardsContainer.onCardAdded();
     }
 
+    /**
+     * Initialize items list with a new empty list and add a dafault base cardView into SwipeCardViewContainer
+     */
     public void reset(){
-        mCards = new ArrayList<AbstractCardModel>();
+        mItems = new ArrayList<AbstractCardModel>();
         addDefaultCard();
         notifyDataSetChanged();
     }
 
+    /**
+     * Add a dafault base cardView into SwipeCardViewContainer
+     */
     private void addDefaultCard(){
         AbstractCardModel cardModel = new BaseCard(getContext());
         cardModel.setProgress(true);
         put(0, cardModel);
     }
 
+    /**
+     *
+     * @return a commons LinearLayout with padding used to insert all items
+     */
     private LinearLayout newFrame(){
         LinearLayout frame = new LinearLayout(getContext());
         frame.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));

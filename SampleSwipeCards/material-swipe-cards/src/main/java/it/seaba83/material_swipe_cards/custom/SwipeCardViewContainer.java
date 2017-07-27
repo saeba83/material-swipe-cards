@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import it.seaba83.material_swipe_cards.R;
-import it.seaba83.material_swipe_cards.adapters.CardsPagerAdapter;
+import it.seaba83.material_swipe_cards.adapters.SwipeCardsAdapter;
 import it.seaba83.material_swipe_cards.general.Utils;
 import it.seaba83.material_swipe_cards.model.AbstractCardModel;
 
@@ -81,7 +81,7 @@ public class SwipeCardViewContainer extends LinearLayout {
         setBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.transparent));
         mPager = (ViewPager) findViewById(R.id.pager);
         mIndicatorLayout = (LinearLayout) findViewById(R.id.indicator_layout);
-        setAdapter(new CardsPagerAdapter(getContext(), this));
+        setAdapter(new SwipeCardsAdapter(getContext(), this));
     }
 
     /**
@@ -98,8 +98,8 @@ public class SwipeCardViewContainer extends LinearLayout {
      *
      * @return current embedded ViewPager adapter
      */
-    public CardsPagerAdapter getAdapter(){
-        return (CardsPagerAdapter)mPager.getAdapter();
+    public SwipeCardsAdapter getAdapter(){
+        return (SwipeCardsAdapter)mPager.getAdapter();
     }
 
     /**
@@ -170,7 +170,6 @@ public class SwipeCardViewContainer extends LinearLayout {
             getAdapter().setError(position, message, buttonLabel, clickListener);
         }
     }
-
 
     /**
      * Crate cards number indicator end set current selected index
