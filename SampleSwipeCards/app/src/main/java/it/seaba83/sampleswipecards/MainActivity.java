@@ -40,6 +40,12 @@ public class MainActivity extends AppCompatActivity {
         mExampleCardsContainer.putCardView(0, new HelloWorldCard(getString(R.string.sample_card_one_title), getString(R.string.sample_card_one_message), helloWorldCardCompiler));
         mExampleCardsContainer.putCardView(1, new HelloWorldCard(getString(R.string.sample_card_two_title), getString(R.string.sample_card_two_message), helloWorldCardCompiler));
         mExampleCardsContainer.putCardView(2, new HelloWorldCard(getString(R.string.sample_card_three_title), getString(R.string.sample_card_three_message), helloWorldCardCompiler));
+        mExampleCardsContainer.putCardView(3, new HelloWorldCard(getString(R.string.sample_card_three_title), getString(R.string.sample_card_three_message), helloWorldCardCompiler));
+        mExampleCardsContainer.putCardView(4, new HelloWorldCard(getString(R.string.sample_card_three_title), getString(R.string.sample_card_three_message), helloWorldCardCompiler));
+        mExampleCardsContainer.putCardView(5, new HelloWorldCard(getString(R.string.sample_card_three_title), getString(R.string.sample_card_three_message), helloWorldCardCompiler));
+        mExampleCardsContainer.putCardView(6, new HelloWorldCard(getString(R.string.sample_card_three_title), getString(R.string.sample_card_three_message), helloWorldCardCompiler));
+
+
 
         mExampleCardsContainer.setProgress(1, true);
 

@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"/>
 
     <LinearLayout
+        android:animateLayoutChanges="true"
         android:layout_gravity="bottom"
         android:id="@+id/indicator_layout"
         android:orientation="horizontal"
