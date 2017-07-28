@@ -225,12 +225,21 @@ public class SwipeCardViewContainer extends LinearLayout {
      * @param size of indicator item
      */
     private void createIndicatorItem(int size){
+        createIndicatorItem(size, mIndicatorLayout.getChildCount());
+    }
+
+    /**
+     * Create single indicator item, and add this to indicator layout
+     * @param size of indicator item
+     * @param position position where you wante insert indicator item
+     */
+    private void createIndicatorItem(int size, int position){
         View indicator = new View(getContext());
         LayoutParams layoutParams = new LayoutParams(size, size);
         layoutParams.setMargins((int)getContext().getResources().getDimension(R.dimen.indicator_margins_horizontal), (int)getContext().getResources().getDimension(R.dimen.indicator_margins_top), (int) getContext().getResources().getDimension(R.dimen.indicator_margins_horizontal), (int)getContext().getResources().getDimension(R.dimen.indicator_margins_bottom));
         indicator.setBackgroundResource(R.drawable.custom_pager_indicator_circle_unselected);
         indicator.setLayoutParams(layoutParams);
-        mIndicatorLayout.addView(indicator, layoutParams);
+        mIndicatorLayout.addView(indicator, position, layoutParams);
         Utils.log(TAG, "Added view");
     }
 
@@ -244,7 +253,7 @@ public class SwipeCardViewContainer extends LinearLayout {
         int indicatorPosition = position;
 
         if (haveExtraItems && indicatorPosition < mItemsNumber) {
-            createIndicatorItem((int)getContext().getResources().getDimension(R.dimen.indicator_extra_radius_size));
+            createIndicatorItem((int)getContext().getResources().getDimension(R.dimen.indicator_extra_radius_size), 0);
             mIndicatorLayout.removeViewAt(0);
 
             if (indicatorPosition == mItemsNumber -2 && indicatorPosition > getPreviousIndicatorPosition() || indicatorPosition != 1 && indicatorPosition < getPreviousIndicatorPosition()){
