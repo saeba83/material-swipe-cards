@@ -253,11 +253,11 @@ public class SwipeCardViewContainer extends LinearLayout {
         int indicatorPosition = position;
 
         if (haveExtraItems && indicatorPosition < mItemsNumber) {
-            createIndicatorItem((int)getContext().getResources().getDimension(R.dimen.indicator_extra_radius_size), 0);
+            createIndicatorItem((int)getContext().getResources().getDimension(R.dimen.indicator_extra_radius_size), mIndicatorLayout.getChildCount());
             mIndicatorLayout.removeViewAt(0);
 
-            if (indicatorPosition == mItemsNumber -2 && indicatorPosition > getPreviousIndicatorPosition() || indicatorPosition != 1 && indicatorPosition < getPreviousIndicatorPosition()){
-                indicatorPosition --;
+            if (indicatorPosition >= (INDICATOR_ITEM_MAX_SIZE) && (position < mItemsNumber-1) && (indicatorPosition > getPreviousIndicatorPosition())){
+                indicatorPosition = INDICATOR_ITEM_MAX_SIZE-1;
             }
         }
 
@@ -280,7 +280,7 @@ public class SwipeCardViewContainer extends LinearLayout {
                 }
             }
         }
-        setPreviousIndicatorPosition(position);
+        setPreviousIndicatorPosition(indicatorPosition);
     }
 
     /**
