@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         mExampleCardsContainer.putCardView(0, new HelloWorldCard(getString(R.string.sample_card_one_title), getString(R.string.sample_card_one_message), helloWorldCardCompiler));
         mExampleCardsContainer.putCardView(1, new HelloWorldCard(getString(R.string.sample_card_two_title), getString(R.string.sample_card_two_message), helloWorldCardCompiler));
         mExampleCardsContainer.putCardView(2, new HelloWorldCard(getString(R.string.sample_card_three_title), getString(R.string.sample_card_three_message), helloWorldCardCompiler));
+        mExampleCardsContainer.putCardView(3, new HelloWorldCard(getString(R.string.sample_card_three_title), getString(R.string.sample_card_three_message), helloWorldCardCompiler));
 
         mExampleCardsContainer.setProgress(1, true);
 
@@ -93,5 +94,9 @@ public class MainActivity extends AppCompatActivity {
         mColoredCardsContainer.putCardView(1, new ColoredCard(ContextCompat.getColor(MainActivity.this, R.color.blue_indicator), coloredCardCompiler));
         mColoredCardsContainer.putCardView(2, new ColoredCard(ContextCompat.getColor(MainActivity.this, R.color.red_indicator), coloredCardCompiler));
         mColoredCardsContainer.putCardView(3, new ColoredCard(ContextCompat.getColor(MainActivity.this, R.color.colorAccent), coloredCardCompiler));
+        mColoredCardsContainer.putCardView(4, new ColoredCard(ContextCompat.getColor(MainActivity.this, R.color.yellow), coloredCardCompiler));
+        mColoredCardsContainer.putCardView(5, new ColoredCard(ContextCompat.getColor(MainActivity.this, R.color.blue), coloredCardCompiler));
+        mColoredCardsContainer.putCardView(6, new ColoredCard(ContextCompat.getColor(MainActivity.this, R.color.colorAccent), coloredCardCompiler));
+
     }
 }

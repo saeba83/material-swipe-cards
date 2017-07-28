@@ -7,4 +7,6 @@
     <color name="green_indicator">#3cb371</color>
     <color name="blue_indicator">#2b8bd4</color>
     <color name="red_indicator">#f61818</color>
+    <color name="blue">#9ac1ff</color>
+    <color name="yellow">#ffb90f</color>
 </resources>

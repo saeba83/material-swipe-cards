@@ -5,9 +5,11 @@
     <dimen name="pager_internal_padding">10dp</dimen>
     <dimen name="indicator_margins_top">2dp</dimen>
     <dimen name="indicator_margins_bottom">5dp</dimen>
-    <dimen name="indicator_margins_horizontal">4dp</dimen>
-    <dimen name="indicator_radius_size">9dp</dimen>
-    <dimen name="indicator_selected_radius_size">11dp</dimen>
+    <dimen name="indicator_margins_horizontal">2dp</dimen>
+    <dimen name="indicator_radius_size">7dp</dimen>
+    <dimen name="indicator_selected_radius_size">10dp</dimen>
+    <dimen name="indicator_extra_radius_size">4dp</dimen>
+
 
     <dimen name="card_internal_padding">10dp</dimen>
 </resources>
