@@ -44,7 +44,10 @@ public class SwipeCardViewContainer extends LinearLayout {
     private int mItemsNumber;
     private int mMainColor;
     boolean haveExtraItems = false;
+
     int previousIndicatorPosition;
+    int mBorderStartPosition;
+    int mBorderEndPosition;
 
     public SwipeCardViewContainer(Context context) {
         super(context);
@@ -187,7 +190,7 @@ public class SwipeCardViewContainer extends LinearLayout {
         int itemsNumber = cardsNumber;
 
         if (itemsNumber > INDICATOR_ITEM_MAX_SIZE){
-            itemsNumber = INDICATOR_ITEM_MAX_SIZE;
+            itemsNumber = INDICATOR_ITEM_MAX_SIZE-1;
             haveExtraItems = true;
         }
 
@@ -197,6 +200,11 @@ public class SwipeCardViewContainer extends LinearLayout {
             }
             if (haveExtraItems) {
                 createIndicatorItem((int) getContext().getResources().getDimension(R.dimen.indicator_extra_radius_size));
+                mBorderStartPosition = 1;
+                mBorderEndPosition = INDICATOR_ITEM_MAX_SIZE -2;
+            }else{
+                mBorderStartPosition = 0;
+                mBorderEndPosition = 0;
             }
 
             mPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
@@ -250,22 +258,7 @@ public class SwipeCardViewContainer extends LinearLayout {
     private void selectCurrentIndex(int position){
         Utils.log(TAG, "selectCurrentIndex " + position);
 
-        int indicatorPosition = position;
-
-        if (haveExtraItems && indicatorPosition < mItemsNumber) {
-            createIndicatorItem((int)getContext().getResources().getDimension(R.dimen.indicator_extra_radius_size), mIndicatorLayout.getChildCount());
-            mIndicatorLayout.removeViewAt(0);
-
-            if (indicatorPosition >= (INDICATOR_ITEM_MAX_SIZE) && (position < mItemsNumber-1) && (indicatorPosition > getPreviousIndicatorPosition())){
-                indicatorPosition = INDICATOR_ITEM_MAX_SIZE-1;
-            }
-        }
-
-        if (indicatorPosition > INDICATOR_ITEM_MAX_SIZE) {
-            indicatorPosition = INDICATOR_ITEM_MAX_SIZE;
-        } else if (indicatorPosition < 0){
-            indicatorPosition = 0;
-        }
+        int indicatorPosition = getFixedIndex(position);
 
         for (int i = 0; i < mIndicatorLayout.getChildCount(); i++) {
             View selectedIndicator = mIndicatorLayout.getChildAt(i);
@@ -280,7 +273,47 @@ public class SwipeCardViewContainer extends LinearLayout {
                 }
             }
         }
-        setPreviousIndicatorPosition(indicatorPosition);
+    }
+
+    /**
+     *
+     * @param position cards perger position
+     * @return index for control swipe indicator
+     */
+    private int getFixedIndex(int position){
+        int result = position;
+        if (haveExtraItems){
+
+            int endIndicatorPosition = INDICATOR_ITEM_MAX_SIZE -1;
+            int endCardsPosition = mItemsNumber -1;
+
+            Utils.log(TAG, "Positions: " + " " + " " + getPreviousIndicatorPosition() + " " + position);
+
+            if (result > getPreviousIndicatorPosition() && result > mBorderEndPosition && result != endCardsPosition){
+                result = mBorderEndPosition;
+                setPreviousIndicatorPosition(result);
+            } else if (result < getPreviousIndicatorPosition()){
+                setPreviousIndicatorPosition(result);
+                result = (result) - (mItemsNumber - INDICATOR_ITEM_MAX_SIZE);
+
+                if (result <= 0 && position > 0){
+                    result = mBorderStartPosition;
+                }
+
+                if (position == 0){
+                    result = 0;
+                    setPreviousIndicatorPosition(0);
+                }
+
+            } else if (result == endCardsPosition){
+                result = endIndicatorPosition;
+                setPreviousIndicatorPosition(mItemsNumber);
+            }else{
+                setPreviousIndicatorPosition(result);
+            }
+        }
+        Utils.log(TAG, "Indicator position : " + result);
+        return result;
     }
 
     /**
@@ -300,9 +333,9 @@ public class SwipeCardViewContainer extends LinearLayout {
      */
     private void resizeCurrentIndex(View currentItem, boolean selected, int currentIndex){
         LayoutParams layoutParams = selected ? new LayoutParams((int) getContext().getResources().getDimension(R.dimen.indicator_selected_radius_size),(int) getContext().getResources().getDimension(R.dimen.indicator_selected_radius_size)) : new LayoutParams((int) getContext().getResources().getDimension(R.dimen.indicator_radius_size),(int) getContext().getResources().getDimension(R.dimen.indicator_radius_size));
-        if (haveExtraItems && (currentIndex==0 || (currentIndex==mIndicatorLayout.getChildCount()-1)) && !selected){
+/*        if (haveExtraItems && (currentIndex==0 || (currentIndex==mIndicatorLayout.getChildCount()-1)) && !selected){
             layoutParams = new LayoutParams((int) getContext().getResources().getDimension(R.dimen.indicator_extra_radius_size), (int) getContext().getResources().getDimension(R.dimen.indicator_extra_radius_size));
-        }
+        }*/
         layoutParams.setMargins((int)getContext().getResources().getDimension(R.dimen.indicator_margins_horizontal), (int)getContext().getResources().getDimension(R.dimen.indicator_margins_top), (int) getContext().getResources().getDimension(R.dimen.indicator_margins_horizontal), (int)getContext().getResources().getDimension(R.dimen.indicator_margins_bottom));
         currentItem.setLayoutParams(layoutParams);
     }
