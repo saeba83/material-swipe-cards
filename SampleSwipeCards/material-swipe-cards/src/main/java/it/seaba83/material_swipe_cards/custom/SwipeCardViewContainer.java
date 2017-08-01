@@ -47,9 +47,10 @@ public class SwipeCardViewContainer extends LinearLayout {
     private int mMainColor;
     boolean haveExtraItems = false;
 
-    int mBorderStartPosition;
-    int mBorderEndPosition;
+    int mLeftLimitPosition;
+    int mRightLimitPosition;
     int mCurrentAction;
+    int mCurrentIndicatorPosition;
 
     public SwipeCardViewContainer(Context context) {
         super(context);
@@ -190,6 +191,7 @@ public class SwipeCardViewContainer extends LinearLayout {
         mIndicatorLayout.invalidate();
 
         int itemsNumber = cardsNumber;
+        setCurrentIndicatorPosition(-1);
 
         if (itemsNumber > INDICATOR_ITEM_MAX_SIZE){
             itemsNumber = INDICATOR_ITEM_MAX_SIZE-1;
@@ -202,11 +204,11 @@ public class SwipeCardViewContainer extends LinearLayout {
             }
             if (haveExtraItems) {
                 createIndicatorItem((int) getContext().getResources().getDimension(R.dimen.indicator_extra_radius_size));
-                mBorderStartPosition = 1;
-                mBorderEndPosition = INDICATOR_ITEM_MAX_SIZE -2;
+                mLeftLimitPosition = 1;
+                mRightLimitPosition = INDICATOR_ITEM_MAX_SIZE -2;
             }else{
-                mBorderStartPosition = 0;
-                mBorderEndPosition = 0;
+                mLeftLimitPosition = 0;
+                mRightLimitPosition = 0;
             }
 
             mPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
@@ -268,32 +270,19 @@ public class SwipeCardViewContainer extends LinearLayout {
     private void selectCurrentIndex(int position){
         Utils.log(TAG, "selectCurrentIndex " + position);
 
-        int indicatorPosition = getFixedIndex(position);
-
-        if (haveExtraItems){
-            if (mIndicatorLayout.getChildCount() > 0) {
-                if (indicatorPosition >= mBorderEndPosition || indicatorPosition <= mBorderStartPosition) {
-                    if (getCurrentAction() == ACTION_GO_TO_RIGHT) {
-                        mIndicatorLayout.removeViewAt(0);
-                        createIndicatorItem((int) getResources().getDimension(R.dimen.indicator_radius_size), mIndicatorLayout.getChildCount());
-                    } else {
-                        mIndicatorLayout.removeViewAt(mIndicatorLayout.getChildCount() - 1);
-                        createIndicatorItem((int) getResources().getDimension(R.dimen.indicator_radius_size), 0);
-                    }
-                }
-            }
-        }
+        setCurrentIndicatorPosition(getFixedIndicatorPosition(position, getCurrentIndicatorPosition()));
+        animateExtraItems();
 
         for (int i = 0; i < mIndicatorLayout.getChildCount(); i++) {
             View selectedIndicator = mIndicatorLayout.getChildAt(i);
             if (selectedIndicator != null) {
-                if (i == indicatorPosition) {
+                if (i == getCurrentIndicatorPosition()) {
                     selectedIndicator.setBackgroundResource(R.drawable.custom_pager_indicator_circle_selected);
                     ((GradientDrawable) selectedIndicator.getBackground()).setColor(getMainColor());
-                    resizeCurrentIndex(true, i, indicatorPosition);
+                    resizeCurrentIndex(true, i, getCurrentIndicatorPosition());
                 } else {
                     selectedIndicator.setBackgroundResource(R.drawable.custom_pager_indicator_circle_unselected);
-                    resizeCurrentIndex(false, i, indicatorPosition);
+                    resizeCurrentIndex(false, i, getCurrentIndicatorPosition());
                 }
             }
         }
@@ -302,27 +291,28 @@ public class SwipeCardViewContainer extends LinearLayout {
     /**
      *
      * @param position cards perger position
+     * @param oldIndicatorPosition indicator current position
      * @return index for control swipe indicator
      */
-    private int getFixedIndex(int position){
-        int result = position;
+    private int getFixedIndicatorPosition(int position, int oldIndicatorPosition){
+        int result = oldIndicatorPosition;
         if (haveExtraItems){
 
             int endIndicatorPosition = INDICATOR_ITEM_MAX_SIZE -1;
             int endCardsPosition = mItemsNumber -1;
-
-
+            
             if (getCurrentAction() == ACTION_GO_TO_RIGHT){
-                if (result > mBorderEndPosition && result != endCardsPosition) {
-                    result = mBorderEndPosition;
-                } else if (result == endCardsPosition) {
+                result = oldIndicatorPosition +1;
+                if (result > mRightLimitPosition && position < endCardsPosition) {
+                    result = mRightLimitPosition;
+                } else if (position == endCardsPosition) {
                     result = endIndicatorPosition;
                 }
             } else if (getCurrentAction() == ACTION_GO_TO_LEFT){
-                result = (result) - (mItemsNumber - INDICATOR_ITEM_MAX_SIZE);
+                result = oldIndicatorPosition - 1;
 
                 if (result <= 0 && position > 0){
-                    result = mBorderStartPosition;
+                    result = mLeftLimitPosition;
                 }
 
                 if (position == 0){
@@ -332,6 +322,24 @@ public class SwipeCardViewContainer extends LinearLayout {
         }
         Utils.log(TAG, "Position: " + position + " Current action: " + getCurrentAction() + " Indicator:" + result);
         return result;
+    }
+
+
+    /**
+     * Animate indicator with extra items
+     */
+    private void animateExtraItems(){
+        if (haveExtraItems){
+            if (mIndicatorLayout.getChildCount() > 0) {
+                if (getCurrentAction() == ACTION_GO_TO_RIGHT) {
+                    mIndicatorLayout.removeViewAt(0);
+                    createIndicatorItem((int) getResources().getDimension(R.dimen.indicator_radius_size), mIndicatorLayout.getChildCount());
+                } else {
+                    mIndicatorLayout.removeViewAt(mIndicatorLayout.getChildCount() - 1);
+                    createIndicatorItem((int) getResources().getDimension(R.dimen.indicator_radius_size), 0);
+                }
+            }
+        }
     }
 
     /**
@@ -351,8 +359,8 @@ public class SwipeCardViewContainer extends LinearLayout {
     private void resizeCurrentIndex(boolean selected, int currentIndex, int selectedIndex){
         LayoutParams layoutParams = selected ? new LayoutParams((int) getContext().getResources().getDimension(R.dimen.indicator_selected_radius_size),(int) getContext().getResources().getDimension(R.dimen.indicator_selected_radius_size)) : new LayoutParams((int) getContext().getResources().getDimension(R.dimen.indicator_radius_size),(int) getContext().getResources().getDimension(R.dimen.indicator_radius_size));
         if (haveExtraItems) {
-            if (((currentIndex == 0 && mPager.getCurrentItem() >= mBorderEndPosition) ||
-                    (currentIndex == mIndicatorLayout.getChildCount() - 1) && (mPager.getCurrentItem() < mItemsNumber-1 && getCurrentAction() == ACTION_GO_TO_RIGHT || (selectedIndex <= mBorderStartPosition && getCurrentAction() == ACTION_GO_TO_LEFT)))
+            if (((currentIndex == 0 && mPager.getCurrentItem() >= mRightLimitPosition) ||
+                    (currentIndex == mIndicatorLayout.getChildCount() - 1) && (mPager.getCurrentItem() < mItemsNumber-1 && getCurrentAction() == ACTION_GO_TO_RIGHT || (selectedIndex <= mLeftLimitPosition && getCurrentAction() == ACTION_GO_TO_LEFT)))
                     && !selected) {
                 layoutParams = new LayoutParams((int) getContext().getResources().getDimension(R.dimen.indicator_extra_radius_size), (int) getContext().getResources().getDimension(R.dimen.indicator_extra_radius_size));
             }
@@ -367,6 +375,14 @@ public class SwipeCardViewContainer extends LinearLayout {
 
     private int getCurrentAction(){
         return this.mCurrentAction;
+    }
+
+    private void setCurrentIndicatorPosition(int position){
+        this.mCurrentIndicatorPosition = position;
+    }
+
+    private int getCurrentIndicatorPosition(){
+        return this.mCurrentIndicatorPosition;
     }
 
 
