@@ -14,8 +14,24 @@ android {
 
     }
     buildTypes {
-        release {
+
+        def IS_LOG_ENABLED = "false"
+
+
+        debug {
+            buildConfigField "boolean", "IS_LOG_ENABLED", "true"
             minifyEnabled false
+        }
+
+        debugObfuscated{
+            minifyEnabled true
+            buildConfigField "boolean", "IS_LOG_ENABLED", "false"
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled true
+            buildConfigField "boolean", "IS_LOG_ENABLED", "false"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

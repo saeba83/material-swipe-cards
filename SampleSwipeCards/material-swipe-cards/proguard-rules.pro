@@ -23,3 +23,10 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+
+-keep class it.seaba83.material_swipe_cards.custom.** { *; }
+-keep class it.seaba83.material_swipe_cards.model.** { *; }
+-keep class it.seaba83.material_swipe_cards.compilers.** { *; }
+
+
