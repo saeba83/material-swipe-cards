@@ -295,12 +295,12 @@ public class SwipeCardViewContainer extends LinearLayout {
      * @return index for control swipe indicator
      */
     private int getFixedIndicatorPosition(int position, int oldIndicatorPosition){
-        int result = oldIndicatorPosition;
+        int result = position;
         if (haveExtraItems){
-
+            result = oldIndicatorPosition;
             int endIndicatorPosition = INDICATOR_ITEM_MAX_SIZE -1;
             int endCardsPosition = mItemsNumber -1;
-            
+
             if (getCurrentAction() == ACTION_GO_TO_RIGHT){
                 result = oldIndicatorPosition +1;
                 if (result > mRightLimitPosition && position < endCardsPosition) {
