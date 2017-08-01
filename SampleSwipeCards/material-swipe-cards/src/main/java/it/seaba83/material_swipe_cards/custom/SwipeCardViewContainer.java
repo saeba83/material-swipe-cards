@@ -272,12 +272,14 @@ public class SwipeCardViewContainer extends LinearLayout {
 
         if (haveExtraItems){
             if (mIndicatorLayout.getChildCount() > 0) {
-                if (getCurrentAction() == ACTION_GO_TO_RIGHT) {
-                    mIndicatorLayout.removeViewAt(0);
-                    createIndicatorItem((int) getResources().getDimension(R.dimen.indicator_radius_size), mIndicatorLayout.getChildCount());
-                } else {
-                    mIndicatorLayout.removeViewAt(mIndicatorLayout.getChildCount()-1);
-                    createIndicatorItem((int) getResources().getDimension(R.dimen.indicator_radius_size), 0);
+                if (indicatorPosition >= mBorderEndPosition || indicatorPosition <= mBorderStartPosition) {
+                    if (getCurrentAction() == ACTION_GO_TO_RIGHT) {
+                        mIndicatorLayout.removeViewAt(0);
+                        createIndicatorItem((int) getResources().getDimension(R.dimen.indicator_radius_size), mIndicatorLayout.getChildCount());
+                    } else {
+                        mIndicatorLayout.removeViewAt(mIndicatorLayout.getChildCount() - 1);
+                        createIndicatorItem((int) getResources().getDimension(R.dimen.indicator_radius_size), 0);
+                    }
                 }
             }
         }
