@@ -5,6 +5,10 @@
 ## What?
 An Androd custom view component that allow to manage material-style cardViews on a swipe controller and everyone with a distinct structure and layout.
 
+## Can I use this library ?
+
+Oh yes, but remember that minSdk is **14**
+
 ## How to ?
 
 1.	Add it.seaba83.material_swipe_cards.custom.SwipeCardViewContainer in your xml layout
