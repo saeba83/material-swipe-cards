@@ -27,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         createExampleCardsContainer();
         createStarWarsCardsContainer();
@@ -97,6 +102,12 @@ public class MainActivity extends AppCompatActivity {
         mColoredCardsContainer.putCardView(4, new ColoredCard(ContextCompat.getColor(MainActivity.this, R.color.yellow), coloredCardCompiler));
         mColoredCardsContainer.putCardView(5, new ColoredCard(ContextCompat.getColor(MainActivity.this, R.color.blue), coloredCardCompiler));
         mColoredCardsContainer.putCardView(6, new ColoredCard(ContextCompat.getColor(MainActivity.this, R.color.colorAccent), coloredCardCompiler));
+        mColoredCardsContainer.putCardView(7, new ColoredCard(ContextCompat.getColor(MainActivity.this, R.color.colorAccent), coloredCardCompiler));
+        mColoredCardsContainer.putCardView(8, new ColoredCard(ContextCompat.getColor(MainActivity.this, R.color.yellow), coloredCardCompiler));
+        mColoredCardsContainer.putCardView(9, new ColoredCard(ContextCompat.getColor(MainActivity.this, R.color.colorAccent), coloredCardCompiler));
+        mColoredCardsContainer.putCardView(10, new ColoredCard(ContextCompat.getColor(MainActivity.this, R.color.yellow), coloredCardCompiler));
+        mColoredCardsContainer.putCardView(11, new ColoredCard(ContextCompat.getColor(MainActivity.this, R.color.colorAccent), coloredCardCompiler));
+        mColoredCardsContainer.putCardView(12, new ColoredCard(ContextCompat.getColor(MainActivity.this, R.color.yellow), coloredCardCompiler));
 
     }
 }
