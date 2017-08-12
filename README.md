@@ -9,6 +9,32 @@ An Androd custom view component that allow to manage material-style cardViews on
 
 Oh yes, but remember that minSdk is **14**
 
+## Dependencies ?
+
+for Gradle
+
+```groovy
+compile ('it.saeba83:material-swipe-cards:1.0.0@aar'){
+        transitive=true
+    }
+```
+You have to use trensitive=true only if you don't imported appcompat-v7 and cardview-v7 in your app, else
+
+```groovy
+compile 'it.saeba83:material-swipe-cards:1.0.0@aar'
+```
+for Maven
+
+```xml
+<dependency>
+  <groupId>it.saeba83</groupId>
+  <artifactId>material-swipe-cards</artifactId>
+  <version>1.0.0</version>
+  <type>pom</type>
+</dependency>
+```
+
+
 ## How to ?
 
 1.	Add it.seaba83.material_swipe_cards.custom.SwipeCardViewContainer in your xml layout
